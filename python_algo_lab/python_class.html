@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>python</title>
+</head>
+
+<body style="background:black;color:white;">
+  <h1 style="font-family:cursive; color:red; text-align:center;font-weight:bolder;">RCS-552 Design and Analysis of Algorithm Lab</h1>
+  <h2>1. linear search</h2>
+  <hr />
+  <pre><font color="#FCE94F">def</font> <font color="#34E2E2"><b>linear_search</b></font>(array, left, right, item):
+    <font color="#FCE94F">if</font> left == right:
+        <font color="#FCE94F">return</font> -<font color="#AD7FA8">1</font>
+    <font color="#FCE94F">if</font> array[left] == item:
+        <font color="#FCE94F">return</font> left + <font color="#AD7FA8">1</font>
+    <font color="#FCE94F">return</font> linear_search(array, left + <font color="#AD7FA8">1</font>, right, item)
+
+
+<font color="#FCE94F">if</font> __name__ == <font color="#AD7FA8">&quot;__main__&quot;</font>:
+
+    array = [<font color="#AD7FA8">1</font>, <font color="#AD7FA8">3</font>, <font color="#AD7FA8">9</font>, <font color="#AD7FA8">22</font>, <font color="#AD7FA8">5</font>, <font color="#AD7FA8">0</font>, <font color="#AD7FA8">3</font>, <font color="#AD7FA8">3</font>, <font color="#AD7FA8">4</font>, <font color="#AD7FA8">90</font>]
+    item = <font color="#AD7FA8">22</font>
+    right = <font color="#34E2E2"><b>len</b></font>(array)
+    <font color="#34E2E2"><b>print</b></font>(linear_search(array, <font color="#AD7FA8">0</font>, right, item))</pre>
+  <br />
+
+  <h2>2. binary search</h2>
+  <hr />
+  <pre><font color="#FCE94F">def</font> <font color="#34E2E2"><b>binary_search</b></font>(array, left, right, item):
+    <font color="#FCE94F">if</font> left &gt; right:
+        <font color="#FCE94F">return</font> -<font color="#AD7FA8">1</font>
+    mid = (left + right) // <font color="#AD7FA8">2</font>
+
+    <font color="#FCE94F">if</font> item &lt; array[mid]:
+        <font color="#FCE94F">return</font> binary_search(array, left, mid - <font color="#AD7FA8">1</font>, item)
+    <font color="#FCE94F">elif</font> item &gt; array[mid]:
+        <font color="#FCE94F">return</font> binary_search(array, mid + <font color="#AD7FA8">1</font>, right, item)
+    <font color="#FCE94F">else</font>:
+        <font color="#FCE94F">return</font> mid
+
+
+<font color="#FCE94F">if</font> __name__ == <font color="#AD7FA8">&quot;__main__&quot;</font>:
+    array = [<font color="#AD7FA8">1</font>, <font color="#AD7FA8">2</font>, <font color="#AD7FA8">3</font>, <font color="#AD7FA8">4</font>, <font color="#AD7FA8">5</font>, <font color="#AD7FA8">6</font>, <font color="#AD7FA8">7</font>, <font color="#AD7FA8">8</font>, <font color="#AD7FA8">9</font>, <font color="#AD7FA8">10</font>]
+    item = <font color="#AD7FA8">8</font>
+    <font color="#34E2E2"><b>print</b></font>(binary_search(array, <font color="#AD7FA8">0</font>, <font color="#34E2E2"><b>len</b></font>(array), <font color="#AD7FA8">3</font>))
+</pre>
+
+  <br />
+  <h2>3. insertion sort</h2>
+  <hr />
+  <pre><font color="#FCE94F">def</font> <font color="#34E2E2"><b>insertion_sort</b></font>(array):
+
+    <font color="#FCE94F">for</font> i <font color="#FCE94F">in</font> <font color="#34E2E2"><b>range</b></font>(<font color="#34E2E2"><b>len</b></font>(array)):
+        cursor = array[i]
+        pos = i
+
+        <font color="#FCE94F">while</font> pos &gt; <font color="#AD7FA8">0</font> <font color="#FCE94F">and</font> array[pos - <font color="#AD7FA8">1</font>] &gt; cursor:
+            array[pos] = array[pos - <font color="#AD7FA8">1</font>]
+            pos = pos - <font color="#AD7FA8">1</font>
+        array[pos] = cursor
+
+    <font color="#FCE94F">return</font> array
+
+
+<font color="#FCE94F">if</font> __name__ == <font color="#AD7FA8">&quot;__main__&quot;</font>:
+    <font color="#34E2E2"><b>print</b></font>(insertion_sort([<font color="#AD7FA8">1</font>, <font color="#AD7FA8">3</font>, <font color="#AD7FA8">9</font>, <font color="#AD7FA8">2</font>, <font color="#AD7FA8">0</font>, <font color="#AD7FA8">3</font>, <font color="#AD7FA8">4</font>, <font color="#AD7FA8">8</font>]))</pre>
+  <br />
+
+  <h2>4. quick sort</h2>
+  <hr />
+  <pre><font color="#FCE94F">def</font> <font color="#34E2E2"><b>partition</b></font>(array, low, high):
+    i = low - <font color="#AD7FA8">1</font>
+    pivot = array[high]
+
+    <font color="#FCE94F">for</font> j <font color="#FCE94F">in</font> <font color="#34E2E2"><b>range</b></font>(low, high):
+        <font color="#FCE94F">if</font> array[j] &lt; pivot:
+            i += <font color="#AD7FA8">1</font>
+            array[i], array[j] = array[j], array[i]
+    array[i + <font color="#AD7FA8">1</font>], array[high] = array[high], array[i + <font color="#AD7FA8">1</font>]
+
+    <font color="#FCE94F">return</font> i + <font color="#AD7FA8">1</font>
+
+
+<font color="#FCE94F">def</font> <font color="#34E2E2"><b>quick_sort</b></font>(array, low, high):
+    <font color="#FCE94F">if</font> low &lt; high:
+        partition_index = partition(array, low, high)
+
+        quick_sort(array, low, partition_index - <font color="#AD7FA8">1</font>)
+        quick_sort(array, partition_index + <font color="#AD7FA8">1</font>, high)
+
+
+<font color="#FCE94F">if</font> __name__ == <font color="#AD7FA8">&quot;__main__&quot;</font>:
+    array = [<font color="#AD7FA8">2</font>, <font color="#AD7FA8">4</font>, <font color="#AD7FA8">1</font>, <font color="#AD7FA8">4</font>, <font color="#AD7FA8">2</font>, <font color="#AD7FA8">0</font>, <font color="#AD7FA8">3</font>, <font color="#AD7FA8">3</font>, <font color="#AD7FA8">7</font>]
+    length = <font color="#34E2E2"><b>len</b></font>(array) - <font color="#AD7FA8">1</font>
+
+    quick_sort(array, <font color="#AD7FA8">0</font>, length)
+
+    <font color="#34E2E2"><b>print</b></font>(array)
+</pre>
+  <br />
+  <h2>5. selection sort</h2>
+  <hr />
+  <pre><font color="#FCE94F">def</font> <font color="#34E2E2"><b>selection_sort</b></font>(array):
+
+  <font color="#FCE94F">for</font> i <font color="#FCE94F">in</font> <font color="#34E2E2"><b>range</b></font>(<font color="#34E2E2"><b>len</b></font>(array)):
+      minimum = i
+      <font color="#FCE94F">for</font> j <font color="#FCE94F">in</font> <font color="#34E2E2"><b>range</b></font>(i + <font color="#AD7FA8">1</font>, <font color="#34E2E2"><b>len</b></font>(array)):
+          <font color="#FCE94F">if</font> array[j] &lt; array[minimum]:
+              minimum = j
+
+      array[minimum], array[i] = array[i], array[minimum]
+
+  <font color="#FCE94F">return</font> array
+
+
+<font color="#FCE94F">if</font> __name__ == <font color="#AD7FA8">&quot;__main__&quot;</font>:
+
+  array = [<font color="#AD7FA8">2</font>, <font color="#AD7FA8">3</font>, <font color="#AD7FA8">1</font>, <font color="#AD7FA8">4</font>, <font color="#AD7FA8">2</font>, <font color="#AD7FA8">2</font>, <font color="#AD7FA8">4</font>, <font color="#AD7FA8">0</font>, <font color="#AD7FA8">1</font>, <font color="#AD7FA8">2</font>, <font color="#AD7FA8">2</font>, <font color="#AD7FA8">33</font>, <font color="#AD7FA8">92</font>]
+  <font color="#34E2E2"><b>print</b></font>(selection_sort(array))
+</pre>
+  <br />
+  <h2>6. merge sort</h2>
+  <hr />
+  <pre><font color="#FCE94F">def</font> <font color="#34E2E2"><b>merge_sort</b></font>(arr):
+    <font color="#FCE94F">if</font> <font color="#34E2E2"><b>len</b></font>(arr) &lt;= <font color="#AD7FA8">1</font>:
+        <font color="#FCE94F">return</font> arr
+    mid = <font color="#34E2E2"><b>len</b></font>(arr) // <font color="#AD7FA8">2</font>
+    left, right = merge_sort(arr[:mid]), merge_sort(arr[mid:])
+    <font color="#FCE94F">return</font> merge(left, right, arr.copy())
+
+
+<font color="#FCE94F">def</font> <font color="#34E2E2"><b>merge</b></font>(left, right, merged):
+    left_cursor, right_cursor = <font color="#AD7FA8">0</font>, <font color="#AD7FA8">0</font>
+    <font color="#FCE94F">while</font> left_cursor &lt; <font color="#34E2E2"><b>len</b></font>(left) <font color="#FCE94F">and</font> right_cursor &lt; <font color="#34E2E2"><b>len</b></font>(right):
+        <font color="#FCE94F">if</font> left[left_cursor] &lt;= right[right_cursor]:
+            merged[left_cursor + right_cursor] = left[left_cursor]
+            left_cursor += <font color="#AD7FA8">1</font>
+        <font color="#FCE94F">else</font>:
+            merged[left_cursor + right_cursor] = right[right_cursor]
+            right_cursor += <font color="#AD7FA8">1</font>
+    <font color="#FCE94F">for</font> left_cursor <font color="#FCE94F">in</font> <font color="#34E2E2"><b>range</b></font>(left_cursor, <font color="#34E2E2"><b>len</b></font>(left)):
+        merged[left_cursor + right_cursor] = left[left_cursor]
+    <font color="#FCE94F">for</font> right_cursor <font color="#FCE94F">in</font> <font color="#34E2E2"><b>range</b></font>(right_cursor, <font color="#34E2E2"><b>len</b></font>(right)):
+        merged[left_cursor + right_cursor] = right[right_cursor]
+
+    <font color="#FCE94F">return</font> merged
+
+
+<font color="#FCE94F">if</font> __name__ == <font color="#AD7FA8">&quot;__main__&quot;</font>:
+    <font color="#34E2E2"><b>print</b></font>(merge_sort([<font color="#AD7FA8">2</font>, <font color="#AD7FA8">34</font>, <font color="#AD7FA8">1</font>, <font color="#AD7FA8">5</font>, <font color="#AD7FA8">0</font>, <font color="#AD7FA8">1</font>, <font color="#AD7FA8">1</font>]))
+</pre>
+  <br />
+  <h2>7. heap sort</h2>
+  <hr />
+  <pre><font color="#FCE94F">def</font> <font color="#34E2E2"><b>heap_sort</b></font>(array):
+    n = <font color="#34E2E2"><b>len</b></font>(array)
+
+    <font color="#FCE94F">for</font> i <font color="#FCE94F">in</font> <font color="#34E2E2"><b>range</b></font>(n, -<font color="#AD7FA8">1</font>, -<font color="#AD7FA8">1</font>):
+        heapify(array, n, i)
+
+    <font color="#FCE94F">for</font> i <font color="#FCE94F">in</font> <font color="#34E2E2"><b>range</b></font>(n - <font color="#AD7FA8">1</font>, <font color="#AD7FA8">0</font>, -<font color="#AD7FA8">1</font>):
+        array[i], array[<font color="#AD7FA8">0</font>] = array[<font color="#AD7FA8">0</font>], array[i]
+        heapify(array, i, <font color="#AD7FA8">0</font>)
+
+
+<font color="#FCE94F">def</font> <font color="#34E2E2"><b>heapify</b></font>(array, n, i):
+    largest = i
+    l = <font color="#AD7FA8">2</font> * i + <font color="#AD7FA8">1</font>
+    r = <font color="#AD7FA8">2</font> * i + <font color="#AD7FA8">2</font>
+
+    <font color="#FCE94F">if</font> l &lt; n <font color="#FCE94F">and</font> array[i] &lt; array[l]:
+        largest = l
+    <font color="#FCE94F">if</font> r &lt; n <font color="#FCE94F">and</font> array[largest] &lt; array[r]:
+        largest = r
+
+    <font color="#FCE94F">if</font> largest != i:
+        array[i], array[largest] = array[largest], array[i]
+
+        heapify(array, n, largest)
+
+
+<font color="#FCE94F">if</font> __name__ == <font color="#AD7FA8">&quot;__main__&quot;</font>:
+    l = <font color="#34E2E2"><b>list</b></font>(<font color="#34E2E2"><b>map</b></font>(<font color="#34E2E2"><b>int</b></font>, <font color="#34E2E2"><b>input</b></font>().split()))
+    heap_sort(l)
+    <font color="#34E2E2"><b>print</b></font>(l)
+</pre>
+  <br />
+  <h2>8. greedy knapsack problem</h2>
+  <hr />
+  <pre>
+<font color="#FCE94F">class</font> <font color="#34E2E2"><b>Items</b></font>:
+    <font color="#FCE94F">def</font> <font color="#34E2E2"><b>__init__</b></font>(self, wt, val, ind):
+        self.wt = wt
+        self.val = val
+        self.ind = ind
+        self.cost = val / wt
+
+    <font color="#FCE94F">def</font> <font color="#34E2E2"><b>__lt__</b></font>(self, other):
+        <font color="#FCE94F">return</font> self.cost &lt; other.cost
+
+
+<font color="#FCE94F">def</font> <font color="#34E2E2"><b>getMaxValue</b></font>(wt, val, capacity):
+    p_by_w_ratio = []
+
+    <font color="#FCE94F">for</font> i <font color="#FCE94F">in</font> <font color="#34E2E2"><b>range</b></font>(<font color="#34E2E2"><b>len</b></font>(wt)):
+        p_by_w_ratio.append(Items(wt[i], val[i], i))
+
+    p_by_w_ratio.sort(reverse=<font color="#34E2E2"><b>True</b></font>)
+
+    total_profit = <font color="#AD7FA8">0</font>
+
+    <font color="#FCE94F">for</font> i <font color="#FCE94F">in</font> p_by_w_ratio:
+        curwt = <font color="#34E2E2"><b>int</b></font>(i.wt)
+        curval = <font color="#34E2E2"><b>int</b></font>(i.val)
+        <font color="#FCE94F">if</font> capacity - curval &gt;= <font color="#AD7FA8">0</font>:
+            capacity -= curwt
+            total_profit += curval
+        <font color="#FCE94F">else</font>:
+            <font color="#FCE94F">break</font>
+    <font color="#FCE94F">if</font> capacity &gt; <font color="#AD7FA8">0</font>:
+        fraction = capacity / curwt
+        total_profit += curval * fraction
+        capacity = <font color="#34E2E2"><b>int</b></font>(capacity - (curwt * fraction))
+
+    <font color="#FCE94F">return</font> total_profit
+
+
+<font color="#FCE94F">if</font> __name__ == <font color="#AD7FA8">&quot;__main__&quot;</font>:
+    wt = [<font color="#AD7FA8">10</font>, <font color="#AD7FA8">40</font>, <font color="#AD7FA8">20</font>, <font color="#AD7FA8">30</font>]
+    val = [<font color="#AD7FA8">60</font>, <font color="#AD7FA8">40</font>, <font color="#AD7FA8">100</font>, <font color="#AD7FA8">120</font>]
+    capacity = <font color="#AD7FA8">60</font>
+
+    <font color="#34E2E2"><b>print</b></font>(getMaxValue(wt, val, capacity))
+</pre>
+  <br />
+  <h2>9. min spanning tree using kruskal's algo</h2>
+  <hr />
+  <pre><font color="#5FD7FF">from</font> collections <font color="#5FD7FF">import</font> defaultdict
+
+
+<font color="#FCE94F">class</font> <font color="#34E2E2"><b>Graph</b></font>:
+    <font color="#FCE94F">def</font> <font color="#34E2E2"><b>__init__</b></font>(self, vertices):
+        self.v = vertices
+        self.graph = []
+
+    <font color="#FCE94F">def</font> <font color="#34E2E2"><b>addEdge</b></font>(self, u, v, w):
+        self.graph.append([u, v, w])
+
+    <font color="#FCE94F">def</font> <font color="#34E2E2"><b>find</b></font>(self, parent, i):
+        <font color="#FCE94F">if</font> parent[i] == i:
+            <font color="#FCE94F">return</font> i
+        <font color="#FCE94F">return</font> self.find(parent, parent[i])
+
+    <font color="#FCE94F">def</font> <font color="#34E2E2"><b>union</b></font>(self, parent, rank, x, y):
+        xroot = self.find(parent, x)
+        yroot = self.find(parent, y)
+
+        <font color="#FCE94F">if</font> rank[xroot] &lt; rank[yroot]:
+            parent[xroot] = yroot
+        <font color="#FCE94F">elif</font> rank[xroot] &gt; rank[yroot]:
+            parent[yroot] = xroot
+
+        <font color="#FCE94F">else</font>:
+            parent[yroot] = xroot
+            rank[xroot] += <font color="#AD7FA8">1</font>
+
+    <font color="#FCE94F">def</font> <font color="#34E2E2"><b>KruskalMST</b></font>(self):
+        result = []
+        i = <font color="#AD7FA8">0</font>
+        e = <font color="#AD7FA8">0</font>
+
+        self.graph = <font color="#34E2E2"><b>sorted</b></font>(self.graph, key=<font color="#FCE94F">lambda</font> item: item[<font color="#AD7FA8">2</font>])
+
+        parent = []
+        rank = []
+
+        <font color="#FCE94F">for</font> node <font color="#FCE94F">in</font> <font color="#34E2E2"><b>range</b></font>(self.v):
+            parent.append(node)
+            rank.append(<font color="#AD7FA8">0</font>)
+
+        <font color="#FCE94F">while</font> e &lt; self.v - <font color="#AD7FA8">1</font>:
+            u, v, w = self.graph[i]
+
+            i += <font color="#AD7FA8">1</font>
+            x = self.find(parent, u)
+            y = self.find(parent, v)
+
+            <font color="#FCE94F">if</font> x != y:
+                e += <font color="#AD7FA8">1</font>
+                result.append([u, v, w])
+                self.union(parent, rank, x, y)
+
+        <font color="#34E2E2"># printing</font>
+
+        <font color="#FCE94F">for</font> u, v, weight <font color="#FCE94F">in</font> result:
+            <font color="#34E2E2"><b>print</b></font>(<font color="#AD7FA8">&quot;%d -- %d == %d&quot;</font> % (u, v, weight))
+
+
+<font color="#FCE94F">if</font> __name__ == <font color="#AD7FA8">&quot;__main__&quot;</font>:
+    g = Graph(<font color="#AD7FA8">4</font>)
+    g.addEdge(<font color="#AD7FA8">0</font>, <font color="#AD7FA8">1</font>, <font color="#AD7FA8">10</font>)
+    g.addEdge(<font color="#AD7FA8">0</font>, <font color="#AD7FA8">2</font>, <font color="#AD7FA8">6</font>)
+    g.addEdge(<font color="#AD7FA8">0</font>, <font color="#AD7FA8">3</font>, <font color="#AD7FA8">5</font>)
+    g.addEdge(<font color="#AD7FA8">1</font>, <font color="#AD7FA8">3</font>, <font color="#AD7FA8">15</font>)
+    g.addEdge(<font color="#AD7FA8">2</font>, <font color="#AD7FA8">3</font>, <font color="#AD7FA8">4</font>)
+
+    g.KruskalMST()
+</pre>
+  <br />
+
+
+
+</body>
+
+</html>
