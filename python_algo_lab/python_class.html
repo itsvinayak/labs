@@ -309,6 +309,42 @@
     g.KruskalMST()
 </pre>
   <br />
+  <h2>10. travelling salesman</h2>
+  <hr />
+  <pre>answer = []
+
+<font color="#FCE94F">def</font> <font color="#34E2E2"><b>tsp</b></font>(graph, v, currPos, n, count, cost):
+
+    <font color="#FCE94F">if</font> count == n <font color="#FCE94F">and</font> graph[currPos][<font color="#AD7FA8">0</font>]:
+        answer.append(cost + graph[currPos][<font color="#AD7FA8">0</font>])
+        <font color="#FCE94F">return</font>
+
+    <font color="#FCE94F">for</font> i <font color="#FCE94F">in</font> <font color="#34E2E2"><b>range</b></font>(n):
+        <font color="#FCE94F">if</font> v[i] == <font color="#34E2E2"><b>False</b></font> <font color="#FCE94F">and</font> graph[currPos][i]:
+
+            v[i] = <font color="#34E2E2"><b>True</b></font>
+            tsp(graph, v, i, n, count + <font color="#AD7FA8">1</font>, cost + graph[currPos][i])
+
+            v[i] = <font color="#34E2E2"><b>False</b></font>
+
+
+<font color="#FCE94F">if</font> __name__ == <font color="#AD7FA8">&quot;__main__&quot;</font>:
+    n = <font color="#AD7FA8">4</font>
+    graph = [[<font color="#AD7FA8">0</font>, <font color="#AD7FA8">10</font>, <font color="#AD7FA8">15</font>, <font color="#AD7FA8">20</font>],
+             [<font color="#AD7FA8">10</font>, <font color="#AD7FA8">0</font>, <font color="#AD7FA8">35</font>, <font color="#AD7FA8">25</font>],
+             [<font color="#AD7FA8">15</font>, <font color="#AD7FA8">35</font>, <font color="#AD7FA8">0</font>, <font color="#AD7FA8">30</font>],
+             [<font color="#AD7FA8">20</font>, <font color="#AD7FA8">25</font>, <font color="#AD7FA8">30</font>, <font color="#AD7FA8">0</font>]]
+
+    v = [<font color="#34E2E2"><b>False</b></font> <font color="#FCE94F">for</font> i <font color="#FCE94F">in</font> <font color="#34E2E2"><b>range</b></font>(n)]
+
+    v[<font color="#AD7FA8">0</font>] = <font color="#34E2E2"><b>True</b></font>
+
+    tsp(graph, v, <font color="#AD7FA8">0</font>, n, <font color="#AD7FA8">1</font>, <font color="#AD7FA8">0</font>)
+
+    <font color="#34E2E2"><b>print</b></font>(<font color="#34E2E2"><b>min</b></font>(answer))
+</pre>
+
+  <br />
 
 
 
