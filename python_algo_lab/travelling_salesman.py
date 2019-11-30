@@ -10,6 +10,7 @@ def tsp(graph, v, currPos, n, count, cost):
         if v[i] == False and graph[currPos][i]:
 
             v[i] = True
+            print(graph[currPos][i])
             tsp(graph, v, i, n, count + 1, cost + graph[currPos][i])
 
             v[i] = False

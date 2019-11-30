@@ -1,8 +1,9 @@
 def merge_sort(arr):
+    print(arr)
     if len(arr) <= 1:
         return arr
     mid = len(arr) // 2
-    left, right = merge_sort(arr[:mid]), merge_sort(arr[mid:])
+    left, right = merge_sort(arr[mid:]), merge_sort(arr[:mid])
     return merge(left, right, arr.copy())
 
 
