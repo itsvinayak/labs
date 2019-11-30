@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>lisp</title>
+</head>
+
+<body style="background:black;color:white;">
+  <h1 style="font-family:cursive; color:red; text-align:center;font-weight:bolder;">RCS-553 Principles of Programming Languages Lab</h1>
+  <h2>1. linear search</h2>
+  <pre><font color="#55FFFF">;function for linear search and return the position of item in the list</font>
+<font color="#FFD7D7">(</font><font color="#FFFF55">defun</font> linear_search<font color="#FFD7D7">(</font>list_ item<font color="#FFD7D7">)</font>
+       <font color="#FFD7D7">(</font><font color="#FFFF55">loop</font> for pos from <font color="#FF55FF">0</font> <font color="#FFFF55">and</font> element in list_
+             <font color="#FFFF55">when</font><font color="#FFD7D7">(</font><font color="#FFFF55">eql</font> item element<font color="#FFD7D7">)</font>
+                <font color="#FFFF55">do</font><font color="#FFD7D7">(</font><font color="#FFFF55">return</font> <font color="#FFD7D7">(</font><font color="#FFFF55">+</font> pos <font color="#FF55FF">1</font><font color="#FFD7D7">))</font>
+             <font color="#FFD7D7">)</font>
+<font color="#FFD7D7">)</font>
+
+
+<font color="#FFD7D7">(</font><font color="#FFFF55">print</font> <font color="#FFD7D7">(</font>linear_search <font color="#FFD7D7">(</font><font color="#FFFF55">list</font> <font color="#FF55FF">1</font> <font color="#FF55FF">2</font> <font color="#FF55FF">4</font> <font color="#FF55FF">5</font> <font color="#FF55FF">6</font> <font color="#FF55FF">7</font> <font color="#FF55FF">8</font><font color="#FFD7D7">)</font> <font color="#FF55FF">2</font><font color="#FFD7D7">))</font>
+</pre>
+<hr/>
+<h2>2. binary search</h2>
+<pre><span style="background-color:#00AAAA"><font color="#FFD7D7">(</font></span><font color="#FFFF55">defun</font> binary_search <font color="#FFD7D7">(</font>lst <font color="#FFFF55">elt</font><font color="#FFD7D7">)</font>
+  <font color="#FFD7D7">(</font><font color="#FFFF55">cond</font> <font color="#FFD7D7">((</font><font color="#FFFF55">null</font> lst<font color="#FFD7D7">)</font> <font color="#FFFF55">nil</font><font color="#FFD7D7">)</font>
+        <font color="#FFD7D7">((</font><font color="#FFFF55">=</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> lst<font color="#FFD7D7">)</font> <font color="#FFFF55">elt</font><font color="#FFD7D7">)</font> <font color="#FFFF55">t</font><font color="#FFD7D7">)</font>
+        <font color="#FFD7D7">((</font><font color="#FFFF55">&lt;</font> <font color="#FFFF55">elt</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> lst<font color="#FFD7D7">))</font> <font color="#FFD7D7">(</font>binary_search <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> lst<font color="#FFD7D7">))</font> <font color="#FFFF55">elt</font><font color="#FFD7D7">))</font>
+        <font color="#FFD7D7">((</font><font color="#FFFF55">&gt;</font> <font color="#FFFF55">elt</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> lst<font color="#FFD7D7">))</font> <font color="#FFD7D7">(</font>binary_search <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> lst<font color="#FFD7D7">)))</font> <font color="#FFFF55">elt</font><font color="#FFD7D7">)))</font><span style="background-color:#00AAAA"><font color="#FFD7D7">)</font></span>
+
+<font color="#FFD7D7">(</font>binary_search <font color="#FFD7D7">(</font><font color="#FFFF55">list</font> <font color="#FF55FF">1</font> <font color="#FF55FF">3</font> <font color="#FF55FF">4</font> <font color="#FF55FF">8</font> <font color="#FF55FF">1</font> <font color="#FF55FF">8</font> <font color="#FF55FF">1</font><font color="#FFD7D7">)</font> <font color="#FF55FF">3</font><font color="#FFD7D7">)</font>
+</pre>
+<hr/>
+<h2>3. insertion sort</h2>
+<pre><font color="#55FFFF">; inserts an element in its proper position in a list</font>
+<font color="#FFD7D7">(</font><font color="#FFFF55">defun</font> insert <font color="#FFD7D7">(</font>lst <font color="#FFFF55">elt</font><font color="#FFD7D7">)</font>
+  <font color="#FFD7D7">(</font><font color="#FFFF55">cond</font> <font color="#FFD7D7">((</font><font color="#FFFF55">null</font> lst<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cons</font> <font color="#FFFF55">elt</font> <font color="#FFD7D7">&apos;()))</font>
+        <font color="#FFD7D7">((</font><font color="#FFFF55">&lt;=</font> <font color="#FFFF55">elt</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> lst<font color="#FFD7D7">))</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cons</font> <font color="#FFFF55">elt</font> lst<font color="#FFD7D7">))</font>
+        <font color="#FFD7D7">(</font><font color="#FFFF55">t</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cons</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> lst<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font>insert <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> lst<font color="#FFD7D7">)</font> <font color="#FFFF55">elt</font><font color="#FFD7D7">)))))</font>
+
+<font color="#FFD7D7">(</font><font color="#FFFF55">defun</font> insertion-sort <font color="#FFD7D7">(</font>lst<font color="#FFD7D7">)</font>
+  <font color="#FFD7D7">(</font><font color="#FFFF55">if</font> <font color="#FFD7D7">(</font><font color="#FFFF55">null</font> lst<font color="#FFD7D7">)</font>
+    <font color="#FFFF55">nil</font>
+    <font color="#FFD7D7">(</font>insert <font color="#FFD7D7">(</font>insertion-sort <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> lst<font color="#FFD7D7">))</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> lst<font color="#FFD7D7">))))</font>
+
+
+<font color="#FFD7D7">(</font><font color="#FFFF55">defvar</font> lst <font color="#FFD7D7">(</font><font color="#FFFF55">read</font><font color="#FFD7D7">))</font>
+<font color="#FFD7D7">(</font><font color="#FFFF55">print</font> <font color="#FFD7D7">(</font>insertion-sort lst<font color="#FFD7D7">))</font>
+</pre>
+<hr/>
+<h2>4. quick sort</h2>
+<pre><font color="#FFD7D7">(</font><font color="#FFFF55">defun</font> quick_sort<font color="#FFD7D7">(</font>L<font color="#FFD7D7">)</font>
+  <font color="#FFD7D7">(</font><font color="#FFFF55">cond</font>
+    <font color="#FFD7D7">((</font><font color="#FFFF55">null</font> L<font color="#FFD7D7">)</font> <font color="#FFFF55">nil</font><font color="#FFD7D7">)</font>
+    <font color="#FFD7D7">(</font><font color="#FFFF55">t</font>
+      <font color="#FFD7D7">(</font><font color="#FFFF55">append</font>
+        <font color="#FFD7D7">(</font>quick_sort <font color="#FFD7D7">(</font>list&lt; <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> L<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> L<font color="#FFD7D7">)))</font>
+        <font color="#FFD7D7">(</font><font color="#FFFF55">cons</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> L<font color="#FFD7D7">)</font> <font color="#FFFF55">nil</font><font color="#FFD7D7">)</font>
+        <font color="#FFD7D7">(</font>quick_sort <font color="#FFD7D7">(</font>list&gt;= <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> L<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> L<font color="#FFD7D7">)))))))</font>
+
+<font color="#FFD7D7">(</font><font color="#FFFF55">defun</font> list&lt; <font color="#FFD7D7">(</font>a b<font color="#FFD7D7">)</font>
+  <font color="#FFD7D7">(</font><font color="#FFFF55">cond</font>
+    <font color="#FFD7D7">((</font><font color="#FFFF55">or</font> <font color="#FFD7D7">(</font><font color="#FFFF55">null</font> a<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">null</font> b<font color="#FFD7D7">))</font> <font color="#FFFF55">nil</font><font color="#FFD7D7">)</font>
+    <font color="#FFD7D7">((</font><font color="#FFFF55">&lt;</font> a <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> b<font color="#FFD7D7">))</font> <font color="#FFD7D7">(</font>list&lt; a <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> b<font color="#FFD7D7">)))</font>
+    <font color="#FFD7D7">(</font><font color="#FFFF55">t</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cons</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> b<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font>list&lt; a <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> b<font color="#FFD7D7">))))))</font>
+
+<font color="#FFD7D7">(</font><font color="#FFFF55">defun</font> list&gt;= <font color="#FFD7D7">(</font>a b<font color="#FFD7D7">)</font>
+  <font color="#FFD7D7">(</font><font color="#FFFF55">cond</font>
+    <font color="#FFD7D7">((</font><font color="#FFFF55">or</font> <font color="#FFD7D7">(</font><font color="#FFFF55">null</font> a<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">null</font> b<font color="#FFD7D7">))</font> <font color="#FFFF55">nil</font><font color="#FFD7D7">)</font>
+    <font color="#FFD7D7">((</font><font color="#FFFF55">&gt;=</font> a <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> b<font color="#FFD7D7">))</font> <font color="#FFD7D7">(</font>list&gt;= a <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> b<font color="#FFD7D7">)))</font>
+    <font color="#FFD7D7">(</font><font color="#FFFF55">t</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cons</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> b<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font>list&gt;= a <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> b<font color="#FFD7D7">))))))</font>
+
+
+<font color="#FFD7D7">(</font><font color="#FFFF55">print</font> <font color="#FFD7D7">(</font>quick_sort <font color="#FFD7D7">(</font><font color="#FFFF55">read</font><font color="#FFD7D7">)))</font>
+</pre>
+<hr/>
+<h2>5. bubble sort </h2>
+<pre><span style="background-color:#00AAAA"><font color="#FFD7D7">(</font></span><font color="#FFFF55">defun</font> is-sortedp <font color="#FFD7D7">(</font>lst<font color="#FFD7D7">)</font>
+  <font color="#FFD7D7">(</font><font color="#FFFF55">cond</font> <font color="#FFD7D7">((</font><font color="#FFFF55">or</font> <font color="#FFD7D7">(</font><font color="#FFFF55">null</font> lst<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">null</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> lst<font color="#FFD7D7">)))</font> <font color="#FFFF55">t</font><font color="#FFD7D7">)</font>
+        <font color="#FFD7D7">((</font><font color="#FFFF55">&lt;</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> lst<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> lst<font color="#FFD7D7">)))</font> <font color="#FFD7D7">(</font>is-sortedp <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> lst<font color="#FFD7D7">)))</font>
+        <font color="#FFD7D7">(</font><font color="#FFFF55">t</font> <font color="#FFFF55">nil</font><font color="#FFD7D7">))</font><span style="background-color:#00AAAA"><font color="#FFD7D7">)</font></span>
+
+
+<font color="#FFD7D7">(</font><font color="#FFFF55">defun</font> bubble <font color="#FFD7D7">(</font>lst<font color="#FFD7D7">)</font>
+  <font color="#FFD7D7">(</font><font color="#FFFF55">cond</font> <font color="#FFD7D7">((</font><font color="#FFFF55">or</font> <font color="#FFD7D7">(</font><font color="#FFFF55">null</font> lst<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">null</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> lst<font color="#FFD7D7">)))</font> lst<font color="#FFD7D7">)</font>
+        <font color="#FFD7D7">((</font> <font color="#FFFF55">&lt;</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> lst<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> lst<font color="#FFD7D7">)))</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cons</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> lst<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font>bubble <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> lst<font color="#FFD7D7">))))</font>
+        <font color="#FFD7D7">(</font> <font color="#FFFF55">t</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cons</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> lst<font color="#FFD7D7">))</font> <font color="#FFD7D7">(</font>bubble <font color="#FFD7D7">(</font><font color="#FFFF55">cons</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> lst<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> lst<font color="#FFD7D7">))))))))</font>
+
+
+<font color="#FFD7D7">(</font><font color="#FFFF55">defun</font> bubble-sort <font color="#FFD7D7">(</font>lst<font color="#FFD7D7">)</font>
+  <font color="#FFD7D7">(</font><font color="#FFFF55">cond</font> <font color="#FFD7D7">((</font><font color="#FFFF55">or</font> <font color="#FFD7D7">(</font><font color="#FFFF55">null</font> lst<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">null</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> lst<font color="#FFD7D7">)))</font> lst<font color="#FFD7D7">)</font>
+        <font color="#FFD7D7">((</font>is-sortedp  lst<font color="#FFD7D7">)</font> lst<font color="#FFD7D7">)</font>
+        <font color="#FFD7D7">(</font><font color="#FFFF55">t</font> <font color="#FFD7D7">(</font>bubble-sort <font color="#FFD7D7">(</font>bubble lst<font color="#FFD7D7">)))))</font>
+
+
+
+<font color="#FFD7D7">(</font><font color="#FFFF55">print</font> <font color="#FFD7D7">(</font>bubble-sort <font color="#FFD7D7">(</font><font color="#FFFF55">read</font><font color="#FFD7D7">)))</font></pre>
+<hr/>
+<h2>6. merge sort</h2>
+<pre><font color="#FFD7D7">(</font><font color="#FFFF55">defun</font> merge-sort<font color="#FFD7D7">(</font>lst<font color="#FFD7D7">)</font>
+  <font color="#FFD7D7">(</font><font color="#FFFF55">defun</font> merge_<font color="#FFD7D7">(</font>f s<font color="#FFD7D7">)</font>
+    <font color="#FFD7D7">(</font><font color="#FFFF55">cond</font>
+      <font color="#FFD7D7">((</font><font color="#FFFF55">=</font> <font color="#FFD7D7">(</font><font color="#FFFF55">list-length</font> f<font color="#FFD7D7">)</font> <font color="#FF55FF">0</font><font color="#FFD7D7">)</font> s<font color="#FFD7D7">)</font>
+      <font color="#FFD7D7">((</font><font color="#FFFF55">=</font> <font color="#FFD7D7">(</font><font color="#FFFF55">list-length</font> s<font color="#FFD7D7">)</font> <font color="#FF55FF">0</font><font color="#FFD7D7">)</font> f<font color="#FFD7D7">)</font>
+      <font color="#FFD7D7">((</font><font color="#FFFF55">&lt;</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> f<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> s<font color="#FFD7D7">))</font> <font color="#FFD7D7">(</font><font color="#FFFF55">append</font> <font color="#FFD7D7">(</font><font color="#FFFF55">list</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> f<font color="#FFD7D7">))</font> <font color="#FFD7D7">(</font>merge_ <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> f<font color="#FFD7D7">)</font> s<font color="#FFD7D7">)))</font>
+      <font color="#FFD7D7">((</font><font color="#FFFF55">&gt;</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> f<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> s<font color="#FFD7D7">))</font> <font color="#FFD7D7">(</font><font color="#FFFF55">append</font> <font color="#FFD7D7">(</font><font color="#FFFF55">list</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> s<font color="#FFD7D7">))</font> <font color="#FFD7D7">(</font>merge_ f <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> s<font color="#FFD7D7">))))</font>
+      <font color="#FFD7D7">((</font><font color="#FFFF55">=</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> f<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> s<font color="#FFD7D7">))</font> <font color="#FFD7D7">(</font><font color="#FFFF55">append</font> <font color="#FFD7D7">(</font><font color="#FFFF55">list</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> f<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">car</font> s<font color="#FFD7D7">))</font> <font color="#FFD7D7">(</font>merge_ <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> f<font color="#FFD7D7">)</font> <font color="#FFD7D7">(</font><font color="#FFFF55">cdr</font> s<font color="#FFD7D7">))))</font>
+    <font color="#FFD7D7">)</font>
+  <font color="#FFD7D7">)</font>
+  <font color="#FFD7D7">(</font><font color="#FFFF55">let</font> <font color="#FFD7D7">((</font>len <font color="#FFD7D7">(</font><font color="#FFFF55">list-length</font> lst<font color="#FFD7D7">)))</font>
+    <font color="#FFD7D7">(</font><font color="#FFFF55">cond</font>
+      <font color="#FFD7D7">((</font><font color="#FFFF55">=</font> len <font color="#FF55FF">1</font><font color="#FFD7D7">)</font> lst<font color="#FFD7D7">)</font>
+      <font color="#FFD7D7">(</font><font color="#FFFF55">t</font>
+         <font color="#FFD7D7">(</font>merge_ <font color="#FFD7D7">(</font>merge-sort <font color="#FFD7D7">(</font><font color="#FFFF55">subseq</font> lst <font color="#FF55FF">0</font> <font color="#FFD7D7">(</font><font color="#FFFF55">ceiling</font> <font color="#FFD7D7">(</font><font color="#FFFF55">/</font> len <font color="#FF55FF">2</font><font color="#FFD7D7">))))</font>
+                 <font color="#FFD7D7">(</font>merge-sort <font color="#FFD7D7">(</font><font color="#FFFF55">subseq</font> lst <font color="#FFD7D7">(</font><font color="#FFFF55">ceiling</font> <font color="#FFD7D7">(</font><font color="#FFFF55">/</font> len <font color="#FF55FF">2</font><font color="#FFD7D7">))))</font>
+         <font color="#FFD7D7">)</font>
+      <font color="#FFD7D7">)</font>
+    <font color="#FFD7D7">)</font>
+  <font color="#FFD7D7">)</font>
+<font color="#FFD7D7">)</font>
+
+<font color="#FFD7D7">(</font><font color="#FFFF55">print</font> <font color="#FFD7D7">(</font>merge-sort <font color="#FFD7D7">(</font><font color="#FFFF55">read</font><font color="#FFD7D7">)))</font>
+</pre>
+<hr/>
+</body>
+
+</html>
