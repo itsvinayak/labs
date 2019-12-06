@@ -1,5 +1,6 @@
 answer = []
 
+
 def tsp(graph, v, currPos, n, count, cost):
 
     if count == n and graph[currPos][0]:
@@ -18,10 +19,7 @@ def tsp(graph, v, currPos, n, count, cost):
 
 if __name__ == "__main__":
     n = 4
-    graph = [[0, 10, 15, 20],
-             [10, 0, 35, 25],
-             [15, 35, 0, 30],
-             [20, 25, 30, 0]]
+    graph = [[0, 10, 15, 20], [10, 0, 35, 25], [15, 35, 0, 30], [20, 25, 30, 0]]
 
     v = [False for i in range(n)]
 
