@@ -1,0 +1,37 @@
+Socket programming is a way of connecting two nodes on
+a network to communicate with each other.
+
+what are socket ?
+
+A network socket is an internal endpoint for sending or
+receiving data within a node on a computer network.
+_______________________________________________________________
+
+two nodes are :
+server and client
+
+1) One socket(node) listens on a particular port at an IP,
+   while other socket reaches out to the other to form a connection.
+2) Server forms the listener socket while client reaches
+   out to the server.
+
+thing we need to do :
+
+two files server.c and client.c
+
+in server.c
+
+create a socket
+set socket options
+bind socket to address and post
+(in our case it will be localhost:8080)
+listen to that post
+and accept connection.
+
+in client.c
+create a socket connection.
+and connect mostly same
+
+
+
+__________________________________________________________________________________________________
